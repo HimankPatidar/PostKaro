@@ -1,0 +1,196 @@
+
+
+<% layout('layouts/boilerplate.ejs') %>
+
+<style>
+    /* Profile Page Styles */
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
+    .profile-username {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .profile-stats {
+        display: flex;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .profile-stats div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profile-stats span {
+        font-weight: bold;
+    }
+
+    /* Recent Posts */
+    .recent-posts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .recent-post {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .recent-post img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .profile-about {
+  margin-top: 20px;
+}
+
+.profile-about h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.profile-about p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+    /* Form
+    form {
+        margin-top: 20px;
+    }
+
+    form > div {
+        margin-bottom: 10px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    input[type="file"] {
+        display: block;
+        margin-top: 5px;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    } */
+</style>
+
+  
+
+
+<div class="container">
+    <div class="profile-header">
+        <img src="<%= currentUser.image[0].url  %>" alt="Profile Avatar" class="profile-avatar">
+        <div class="profile-info">
+            <div class="profile-username"><%= currentUser.username %></div>
+            <div class="profile-stats">
+                <div>
+                    <span>Followers</span>
+                    <span>0</span>
+                </div>
+                <div>
+                    <span>Following</span>
+                    <span>0</span>
+                </div>
+                <div>
+                    <span>Posts</span>
+                    <span><%= post.length %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-about">
+        <h5>About</h5>
+        <p><%= currentUser.about %></p>
+      </div>
+
+    <h2>Recent Posts</h2>
+    <div class="recent-posts">
+        
+        <% post.forEach(function(post) { %>
+            <div class="recent-post">
+                <img src="<%= post.image[0].url %>" alt="Post Image">
+                <a href="/posts/<%= post.id %>"><%= post.title %></a>
+            </div>
+        <% }) %>
+    </div>
+
+    <form action="/profile?_method=PUT" method="POST" id="update-profile">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Username" value="<%= currentUser.username %>" autofocus required>
+        </div>
+        <div>
+            <label for="current-password">Current Password:</label>
+            <input type="password" id="current-password" name="currentPassword" placeholder="Current Password" required>
+        </div>
+        <div>
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="newPassword" placeholder="New Password">
+        </div>
+        <div>
+            <label for="password-confirmation">Password Confirmation:</label>
+            <input type="password" id="password-confirmation" name="passwordConfirmation" placeholder="Password Confirmation">
+        </div>
+        <div id="validation-message"></div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" value="<%= currentUser.email %>">
+        </div>
+        <div>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+        </div>
+
+        <input type="submit" value="Update Profile">
+    </form>
+</div>
+
+<script src="../public/js/profile.js"></script>  
+
+
+
+
+
+
+
+
+
+
+<!-- 

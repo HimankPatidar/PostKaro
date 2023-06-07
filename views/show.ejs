@@ -1,0 +1,189 @@
+<!-- <% layout('layouts/boilerplate.ejs')%>
+
+<div class="row">
+    <div class="col-6 offset-3">
+                <div class="card-body">
+                <h5 class="card-title"><%= post.title%></h5>
+                <p class="card-text">
+                    <small class="text-muted"><%=post.location%></small></p>
+                    <small class="link-group-item">Posted by<%=post.author.username%></small></p>
+                    <div class="col md-4">
+                        
+            <div class="card mb-3">
+                   
+                <p class="card-text"><%= post.description%></p>
+            </div>
+            <div class="card mb-3">
+                <% post.image.forEach(function(image){ %>
+                   <img src="<%=image.url%>" alt="Post Images" class="card-img-top" alt="...">
+                <% }) %>
+            </div>
+           <% if(currentUser && post.author.equals(currentUser._id)) {%> 
+            <div class="card-body">
+            <a class="card-link btn btn-info" href="/posts/<%=post._id%>/edit">Edit</a>
+            <form class="d-inline" action="/posts/<%=post._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        <% } %>
+          
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+        </div>
+
+        <div class="col-6">
+            <form action="/posts/<%=post._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+              
+                <div class="mb-3">
+                    <label class="form-label" for="body">Comment</label>
+                    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+        <input type="number" name="review[rating]" min="1" max="5" step="1" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-success"></input>
+            </form>
+            <%  post.reviews.forEach(function(review) { %>
+                <div class="card mb-3 ">
+                    <div class="card-body">
+                        <p class="card-text">Comment: <%= review.body %></p>
+                        <p>Rating:<%= review.rating %></p>
+                
+                </div> 
+                <% }) %>
+        </div>   
+</div>
+ -->
+
+<!-- 
+ <% layout('layouts/boilerplate.ejs') %>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><%= post.title %></h5>
+                <p class="card-text">
+                    <small class="text-muted"><%= post.location %></small>
+                </p>
+                <p class="card-text">Posted by <%= post.author.username %></p>
+            </div>
+            <div class="col md-4">
+                <div class="card-body">
+                    <p class="card-text"><%= post.description %></p>
+                </div>
+                <div class="card-body">
+                    <% post.image.forEach(function(image){ %>
+                        <img src="<%= image.url %>" alt="Post Images" class="card-img-top">
+                    <% }) %>
+                </div>
+                <% if (currentUser && post.author.equals(currentUser._id)) { %>
+                    <div class="card-body">
+                        <a class="card-link btn btn-info" href="/posts/<%= post._id %>/edit">Edit</a>
+                        <form class="d-inline" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <form action="/posts/<%= post._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="body">Comment</label>
+                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                <input type="number" name="review[rating]" min="1" max="5" step="1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <input type="submit" class="btn btn-success" value="Submit">
+        </form>
+        <% post.reviews.forEach(function(review) { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="card-text">Comment: <%= review.body %></p>
+                    <p>Rating: <%= review.rating %></p>
+                </div> 
+            </div>
+        <% }) %>
+    </div>
+</div> -->
+
+<% layout('layouts/boilerplate.ejs')%>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text">
+                <small class="text-muted"><%= post.location %></small>
+            </p>
+            <small class="link-group-item">Posted by <%= post.author.username %></small>
+            <div class="col md-4">
+                <div class="card mb-3">
+                    <p class="card-text"><%= post.description %></p>
+                </div>
+                <div class="card mb-3">
+                    <% post.image.forEach(function(image){ %>
+                        <img src="<%= image.url %>" alt="Post Images" class="card-img-top" alt="...">
+                    <% }) %>
+                </div>
+                <% if(currentUser && post.author.equals(currentUser._id)) { %>
+                    <div class="card-body">
+                        <a class="card-link btn btn-info" href="/posts/<%= post._id %>/edit">Edit</a>
+                        <form class="d-inline" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                <% } %>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <form action="/posts/<%= post._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="body">Comment</label>
+                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="rating">Rating</label>
+                <select class="form-select" name="review[rating]" id="rating" required>
+                    <option value="" disabled selected>Select a rating</option>
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <input type="submit" class="btn btn-success"></input>
+        </form>
+        <% post.reviews.forEach(function(review) { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="card-text">Comment: <%= review.body %></p>
+                    <p class="card-text">Rating: <%= review.rating %></p>
+                </div>
+            </div>
+        <% }) %>
+    </div>   
+</div>
