@@ -1,6 +1,5 @@
 const { response } = require("express")
 const {Postmodel} = require("../models/usermodel")
-const {PostSchema} = require('../schemas')
 const { User } = require("../models/users")
 const cloudinary = require("cloudinary");
 cloudinary.config({

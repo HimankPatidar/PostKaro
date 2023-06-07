@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const CatchAsync = require("../utils/CatchAsync")
 const {postController} = require("../controller/postController")
 const {isLoggedIn, isAuthor} = require("../middleware")
 const {Postmodel} = require("../models/usermodel")
