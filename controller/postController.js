@@ -3,9 +3,9 @@ const {Postmodel} = require("../models/usermodel")
 const { User } = require("../models/users")
 const cloudinary = require("cloudinary");
 cloudinary.config({
-  cloud_name:'dm0temaqd',
-  api_key:'144128571589694',
-  api_secret:'ad6apHCamecvKSVSG4QMzwU0ktQ'
+  cloud_name:'YOUR_CLOUD_NAME',
+  api_key:'YOR_API_KEY',
+  api_secret:'YOUR_API_SECRET'
 })
 
 class postController{
